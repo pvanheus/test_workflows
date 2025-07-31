@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2023 The WESkit Contributors
+#
+# SPDX-License-Identifier: MIT
+
+rule all:
+    input:
+        file="hello_world.txt"
+
+rule step1:
+    output:
+        file="hello_world.txt"
+    params:
+        text=config["text"],
+        duration=config["duration"]
+    shell:
+        """
+        sleep {params.duration}; echo {params.text} > {output.file}
+        """
